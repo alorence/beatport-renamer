@@ -32,11 +32,14 @@ class Track(object):
     def __repr__(self):
         stringRes = []
         stringRes.append('*** Track '+str(self.idTrack))
-        stringRes.append('Title : '+self.title)
         artistList = []
         for artist in self.artists :
             artistList.append(str(artist))
         stringRes.append('Artists : '+", ".join(artistList))
+        stringRes.append('Title : '+self.title)
+        stringRes.append('Mix name : '+self.mixName)
+        stringRes.append('Length : '+self.length)
+        stringRes.append('Release date : '+self.releaseDate)
         
         return "\n".join(stringRes) + "\n\n"
     
