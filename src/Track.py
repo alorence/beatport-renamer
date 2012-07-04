@@ -35,7 +35,7 @@ class Track(object):
         stringRes.append('Title : '+self.title)
         artistList = []
         for artist in self.artists :
-            artistList.append(artist.__repr__())
+            artistList.append(str(artist))
         stringRes.append('Artists : '+", ".join(artistList))
         
         return "\n".join(stringRes) + "\n\n"

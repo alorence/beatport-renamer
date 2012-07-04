@@ -9,4 +9,4 @@ if __name__ == '__main__':
     bp = Beatport()
     result = bp.getTrackFromId("1574171")
     for t in result :
-        print t.__repr__()
+        print str(t)
