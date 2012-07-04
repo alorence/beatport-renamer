@@ -3,7 +3,6 @@ Created on 3 juil. 2012
 
 @author: Antoine Lorence
 '''
-from network.ApiConnection import ApiConnection
 from beatport.Beatport import Beatport
 
 if __name__ == '__main__':
