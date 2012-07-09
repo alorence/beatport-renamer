@@ -8,15 +8,10 @@ import json
 import httplib
 import urllib
 
-class ApiConnection(object):
-    '''
-    classdocs
-    '''
+class ApiConnector:
     
-    def __init__(self, api_base):
-        '''
-        Constructor
-        '''
+    def __init__(self, api_base) :
+
         self.baseUrl = api_base
         self.http = httplib.HTTPConnection(api_base, 80)
     
