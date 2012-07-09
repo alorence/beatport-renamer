@@ -63,13 +63,13 @@ class RenameEngine(object):
                 
                 try :
                     os.rename(oldFile, newFile)
-                    print oldFile + " renamed into " + newFile + "\n"
+                    print "%s renamed into %s" % (oldFile, newFile)
                 except Exception, e :
-                    print "Unable to rename track " + oldFile + " in " + newFile + " :"
+                    print "Unable to rename track %s in %s : " % (oldFile, newFile)
                     print e
 
             else:
-                print "Unable to find informations for track " + oldFile
+                print "Unable to find informations for track %s" % (oldFile, )
             
         
     
