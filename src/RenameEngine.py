@@ -49,21 +49,28 @@ class RenameEngine(object):
                 pass
         
         tracksList = self.connector.getTracksFromIds(idList)
-        for infos in renameList:
-            trackObj = tracksList[infos['id']]
-            infos['obj'] = trackObj
         
         for rename in renameList:
             
             oldFile = rename['dir'] + os.path.sep + rename['file']
             
-            suffix = getSuffix(rename['file'])
-            trackObj = rename['obj']
-            newFile = rename['dir'] + os.path.sep + trackObj.getArtists() + ' - ' + trackObj.title + '.' + suffix
+            if tracksList.has_key(rename['id']):
+                
+                trackObj = tracksList[rename['id']]
+                suffix = getSuffix(rename['file'])
+                
+                newFile = rename['dir'] + os.path.sep + trackObj.getArtists() + ' - ' + trackObj.title + '.' + suffix
+                
+                try :
+                    os.rename(oldFile, newFile)
+                    print oldFile + " renamed into " + newFile + "\n"
+                except Exception, e :
+                    print "Unable to rename track " + oldFile + " in " + newFile + " :"
+                    print e
+
+            else:
+                print "Unable to find informations for track " + oldFile
             
-            os.rename(oldFile, newFile)
-        
-            print oldFile + " renamed into " + newFile + "\n"
         
     
     def getIdFromFile(self, filePath):

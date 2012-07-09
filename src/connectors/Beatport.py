@@ -14,10 +14,10 @@ class Beatport(ApiConnector):
     def __init__(self):
         ApiConnector.__init__(self, BEATPORT_API)
     
+    '''
+    Return a list of dict with 'id' and 'obj' attibutes
+    '''
     def getTracksFromIds(self, idList):
-        '''
-        Return a list of dict with 'id' and 'obj' attibutes
-        '''
         strIdList = ','.join(idList)
         params = {"ids":strIdList}
         results = self.query("/catalog/3/tracks", params)
