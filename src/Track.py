@@ -9,8 +9,6 @@ class Track(object):
     '''
     classdocs
     '''
-
-
     def __init__(self, contentDict):
         '''
         Constructor
@@ -27,7 +25,6 @@ class Track(object):
         # TODO :
         # self.release = contentDict["release"]
         # self.label = contentDict["label"]
-        
         
     def __repr__(self):
         stringRes = []

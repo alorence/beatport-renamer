@@ -1,7 +1,7 @@
 '''
 Created on 4 juil. 2012
 
-@author: Toine
+@author: Antoine Lorence
 '''
 
 class Artist(object):
