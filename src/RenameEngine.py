@@ -24,6 +24,7 @@ class RenameEngine(object):
             eltList = os.listdir(self.input)
             self.fileList = []
             for elt in eltList:
+                elt = self.input + os.path.sep + elt
                 if os.path.isfile(elt):
                     self.fileList.append(elt)
         if None == pattern:
