@@ -56,6 +56,12 @@ class RenameEngine(object):
             except:
                 pass
         
+        if len(idList) > 0:
+            print "Search informations to rename %i file(s)" % (len(idList), )
+        else:
+            print "No file to rename"
+            pass
+        
         tracksList = self.connector.getTracksFromIds(idList)
         
         for rename in renameList:
