@@ -7,33 +7,40 @@ Created on 5 juil. 2012
 import os
 import re
 
-
 DEFAULT_PATERN = "%artist% - %title%"
 
 class RenameEngine(object):
 
-    def __init__(self, inputFileOrFolder, connector, pattern=None):
+    def __init__(self, inputFileOrFolder, connector, recursive=False, pattern=None):
         '''
         Constructor
         '''
         self.input = inputFileOrFolder
         self.connector = connector
-        self.fileList = self.getFiles()
+        self.recursive = recursive
+        if self.recursive :
+            self.fileList = self.getFilesRecursively()
+        else :
+            eltList = os.listdir(self.input)
+            self.fileList = []
+            for elt in eltList:
+                if os.path.isfile(elt):
+                    self.fileList.append(elt)
         if None == pattern:
             self.pattern = DEFAULT_PATERN
         else:
             self.pattern = pattern
     
-    def getFiles(self, path=None):
+    def getFilesRecursively(self, path=None):
         fileList = []
         if path == None :
-            return self.getFiles(self.input)
+            return self.getFilesRecursively(self.input)
         else:
             for root, dirs, files in os.walk(path) :
                 for f in files:
                     fileList.append(root + os.path.sep + f)
                 for d in dirs:
-                    fileList.extend(self.getFiles(root + os.path.sep + d))
+                    fileList.extend(self.getFilesRecursively(root + os.path.sep + d))
             return fileList
         
     def renameFiles(self):
