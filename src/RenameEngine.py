@@ -19,7 +19,7 @@ class RenameEngine(object):
         self.connector = connector
         self.recursive = recursive
         if self.recursive :
-            self.fileList = self.getFilesRecursively()
+            self.fileList = self.getAllFiles()
         else :
             eltList = os.listdir(self.input)
             self.fileList = []
@@ -32,17 +32,12 @@ class RenameEngine(object):
         else:
             self.pattern = pattern
     
-    def getFilesRecursively(self, path=None):
+    def getAllFiles(self):
         fileList = []
-        if path == None :
-            return self.getFilesRecursively(self.input)
-        else:
-            for root, dirs, files in os.walk(path) :
-                for f in files:
-                    fileList.append(root + os.path.sep + f)
-                for d in dirs:
-                    fileList.extend(self.getFilesRecursively(root + os.path.sep + d))
-            return fileList
+        for root, _, files in os.walk(self.input) :
+            for f in files:
+                fileList.append(os.path.join(root, f))
+        return fileList
         
     def renameFiles(self):
         renameList = []
